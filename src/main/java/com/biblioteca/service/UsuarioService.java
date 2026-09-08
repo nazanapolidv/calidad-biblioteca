@@ -1,5 +1,6 @@
 package com.biblioteca.service;
 
+import com.biblioteca.exception.BibliotecaException;
 import com.biblioteca.model.Usuario;
 import com.biblioteca.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
@@ -18,15 +19,15 @@ public class UsuarioService {
     public Usuario crearUsuario(String nombre, String email) {
 
         if (nombre == null || nombre.isBlank()) {
-            throw new RuntimeException("El nombre es obligatorio");
+            throw new BibliotecaException("El nombre es obligatorio");
         }
 
         if (email == null || email.isBlank()) {
-            throw new RuntimeException("El email es obligatorio");
+            throw new BibliotecaException("El email es obligatorio");
         }
 
         if (!email.contains("@")) {
-            throw new RuntimeException("Email inválido");
+            throw new BibliotecaException("Email inválido");
         }
 
         Usuario usuario = new Usuario(nombre, email);

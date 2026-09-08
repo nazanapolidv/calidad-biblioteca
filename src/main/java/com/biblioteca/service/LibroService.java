@@ -1,5 +1,6 @@
 package com.biblioteca.service;
 
+import com.biblioteca.exception.BibliotecaException;
 import com.biblioteca.model.Libro;
 import com.biblioteca.repository.LibroRepository;
 import org.springframework.stereotype.Service;
@@ -18,26 +19,11 @@ public class LibroService {
     public Libro crearLibro(String titulo, String autor) {
 
         if (titulo == null || titulo.isBlank()) {
-            throw new RuntimeException("El título es obligatorio");
+            throw new BibliotecaException("El título es obligatorio");
         }
 
         if (autor == null || autor.isBlank()) {
-            throw new RuntimeException("El autor es obligatorio");
-        }
-
-        Libro libro = new Libro(titulo, autor);
-
-        return libroRepository.save(libro);
-    }
-
-    public Libro crearLibro2(String titulo, String autor) {
-
-        if (titulo == null || titulo.isBlank()) {
-            throw new RuntimeException("El título es obligatorio");
-        }
-
-        if (autor == null || autor.isBlank()) {
-            throw new RuntimeException("El autor es obligatorio");
+            throw new BibliotecaException("El autor es obligatorio");
         }
 
         Libro libro = new Libro(titulo, autor);
@@ -57,4 +43,3 @@ public class LibroService {
         libroRepository.deleteById(id);
     }
 }
-
