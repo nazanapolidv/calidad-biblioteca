@@ -1,6 +1,9 @@
 package com.biblioteca.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Libro {
@@ -27,14 +30,6 @@ public class Libro {
     // --- GETTERS ---
 
     public Long getId() {
-        return id;
-    }
-
-    public Long getId2() {
-        return id;
-    }
-
-    public Long getId3() {
         return id;
     }
 
