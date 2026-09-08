@@ -1,16 +1,20 @@
 package com.biblioteca.steps;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.biblioteca.CucumberSpringConfiguration;
 import com.biblioteca.model.Libro;
 import com.biblioteca.service.LibroService;
-import io.cucumber.java.es.Dado;
+
 import io.cucumber.java.es.Cuando;
+import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class LibroServiceSteps extends CucumberSpringConfiguration {
 
@@ -29,11 +33,6 @@ public class LibroServiceSteps extends CucumberSpringConfiguration {
         libroResultado = libroService.crearLibro(titulo, autor);
     }
 
-    @Cuando("ejecuto crearLibro2 con título {string} y autor {string}")
-    public void ejecutoCrearLibro2(String titulo, String autor) {
-        libroResultado = libroService.crearLibro2(titulo, autor);
-    }
-
     @Entonces("el libro resultante no es nulo y tiene título {string}")
     public void verificarLibroCreado(String titulo) {
         assertNotNull(libroResultado);
@@ -49,17 +48,6 @@ public class LibroServiceSteps extends CucumberSpringConfiguration {
             String t = titulo.isEmpty() ? null : titulo;
             String a = autor.isEmpty() ? null : autor;
             libroService.crearLibro(t, a);
-        } catch (Exception e) {
-            excepcionCapturada = e;
-        }
-    }
-
-    @Cuando("intento crearLibro2 con título {string} y autor {string}")
-    public void intentoCrearLibro2(String titulo, String autor) {
-        try {
-            String t = titulo.isEmpty() ? null : titulo;
-            String a = autor.isEmpty() ? null : autor;
-            libroService.crearLibro2(t, a);
         } catch (Exception e) {
             excepcionCapturada = e;
         }
