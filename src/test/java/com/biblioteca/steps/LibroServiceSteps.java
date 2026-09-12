@@ -60,6 +60,29 @@ public class LibroServiceSteps extends CucumberSpringConfiguration {
         excepcionCapturada = null; // Limpieza de estado
     }
 
+    @Cuando("intento crearLibro con título nulo y autor {string}")
+    public void intentoCrearLibroTituloNulo(String autor) {
+        try {
+            libroService.crearLibro(null, autor);
+        } catch (Exception e) {
+            excepcionCapturada = e;
+        }
+    }
+
+    @Cuando("intento crearLibro con título {string} y autor nulo")
+    public void intentoCrearLibroAutorNulo(String titulo) {
+        try {
+            libroService.crearLibro(titulo, null);
+        } catch (Exception e) {
+            excepcionCapturada = e;
+        }
+    }
+
+    @Entonces("al buscar ese ID el resultado es nulo")
+    public void verificarLibroEliminado() {
+        assertNull(libroService.buscarLibro(idGenerado));
+    }
+
     // --- CONSULTAS Y ELIMINACIÓN ---
 
     @Dado("que existe al menos un libro en la base de datos")
